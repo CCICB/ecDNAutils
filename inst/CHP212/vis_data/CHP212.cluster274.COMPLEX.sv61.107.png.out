@@ -1,0 +1,92 @@
+debuggroup summary 0.23s welcome to circos v0.69-6 31 July 2017 on Perl 5.028001
+debuggroup summary 0.23s current working directory /app
+debuggroup summary 0.23s command /app/circos-0.69-6/bin/circos -nosvg -conf /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.circos.107.conf -outputdir /app/mounted/vis_plot -outputfile CHP212.cluster274.COMPLEX.sv61.107.png
+debuggroup summary 0.23s loading configuration from file /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.circos.107.conf
+debuggroup summary 0.24s found conf file /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.circos.107.conf
+debuggroup summary 0.37s debug will appear for these features: output,summary
+debuggroup summary 0.38s bitmap output image /app/mounted/vis_plot/CHP212.cluster274.COMPLEX.sv61.107.png
+debuggroup summary 0.38s parsing karyotype and organizing ideograms
+debuggroup summary 0.38s karyotype has 7 chromosomes of total size 7,239
+debuggroup summary 0.38s applying global and local scaling
+debuggroup summary 0.38s allocating image, colors and brushes
+debuggroup summary 5.24s drawing 7 ideograms of total size 7,239
+debuggroup summary 5.24s drawing highlights and ideograms
+debuggroup summary 5.24s found conf file /app/circos-0.69-6/bin/../etc/tracks/highlight.bg.conf
+debuggroup summary 5.24s found conf file /app/circos-0.69-6/bin/../etc/tracks/highlight.bg.conf
+debuggroup summary 5.24s found conf file /app/circos-0.69-6/bin/../etc/tracks/highlight.bg.conf
+debuggroup summary 5.24s process track_0 highlight /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.gene.circos
+debuggroup summary 5.24s process track_1 highlight /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.exon.circos
+debuggroup summary 5.25s process track_2 highlight /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.segment.circos
+debuggroup summary 5.40s found conf file /app/circos-0.69-6/bin/../etc/tracks/link.conf
+debuggroup summary 5.40s process track_0 link /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.link.circos
+debuggroup summary 5.42s drawing link track_0 z 0
+WARNING *** Track id [track_3] has no type definition. This is alright if you're using the track for side-effects like axes and backgrounds.
+WARNING *** Track id [track_3] of type [_undef_] has no file definition. This is alright if you're using the track for side-effects like axes and backgrounds.
+debuggroup summary 6.34s found conf file /app/circos-0.69-6/bin/../etc/tracks/text.conf
+debuggroup summary 6.34s found conf file /app/circos-0.69-6/bin/../etc/tracks/text.conf
+debuggroup summary 6.34s found conf file /app/circos-0.69-6/bin/../etc/tracks/text.conf
+debuggroup summary 6.34s found conf file /app/circos-0.69-6/bin/../etc/tracks/histogram.conf
+debuggroup summary 6.34s found conf file /app/circos-0.69-6/bin/../etc/tracks/text.conf
+debuggroup summary 6.34s found conf file /app/circos-0.69-6/bin/../etc/tracks/histogram.conf
+debuggroup summary 6.34s found conf file /app/circos-0.69-6/bin/../etc/tracks/histogram.conf
+debuggroup summary 6.34s found conf file /app/circos-0.69-6/bin/../etc/tracks/histogram.conf
+debuggroup summary 6.34s found conf file /app/circos-0.69-6/bin/../etc/tracks/connector.conf
+debuggroup summary 6.35s found conf file /app/circos-0.69-6/bin/../etc/tracks/scatter.conf
+debuggroup summary 6.35s found conf file /app/circos-0.69-6/bin/../etc/tracks/scatter.conf
+debuggroup summary 6.35s found conf file /app/circos-0.69-6/bin/../etc/tracks/highlight.conf
+debuggroup summary 6.35s found conf file /app/circos-0.69-6/bin/../etc/tracks/highlight.conf
+debuggroup summary 6.35s processing track_0 text /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.position.circos
+debuggroup summary 6.36s processing track_1 text /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.exon.rank.circos
+debuggroup summary 6.36s processing track_2 text /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.gene.name.circos
+debuggroup summary 6.36s processing track_4 histogram /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.cna.circos
+debuggroup summary 6.39s processing track_5 text /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.distance.circos
+debuggroup summary 6.40s processing track_6 histogram /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.cna.circos
+debuggroup summary 6.43s processing track_7 histogram /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.map.circos
+debuggroup summary 6.48s processing track_8 histogram /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.map.circos
+debuggroup summary 6.53s processing track_9 connector /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.connector.circos
+debuggroup summary 6.56s processing track_10 scatter /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.scatter.circos
+debuggroup summary 6.61s processing track_11 scatter /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.scatter.sgl.circos
+debuggroup summary 6.63s processing track_12 highlight /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.line_element.circos
+debuggroup summary 6.63s processing track_13 highlight /app/mounted/vis_data/CHP212.cluster274.COMPLEX.sv61.fragile.circos
+debuggroup summary 6.63s drawing track_0 text z 0 CHP212.cluster274.COMPLEX.sv61.position.circos 
+debuggroup summary 6.63s placing text track CHP212.cluster274.COMPLEX.sv61.position.circos
+debuggroup summary 6.63s ... see progress with -debug_group text
+debuggroup summary 6.63s ... see placement summary with -debug_group textplace
+debuggroup summary 6.96s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 7.00s drawing track_1 text z 0 CHP212.cluster274.COMPLEX.sv61.exon.rank.circos 
+debuggroup summary 7.00s placing text track CHP212.cluster274.COMPLEX.sv61.exon.rank.circos
+debuggroup summary 7.00s ... see progress with -debug_group text
+debuggroup summary 7.00s ... see placement summary with -debug_group textplace
+debuggroup summary 7.02s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 7.03s drawing track_2 text z 0 CHP212.cluster274.COMPLEX.sv61.gene.name.circos 
+debuggroup summary 7.03s placing text track CHP212.cluster274.COMPLEX.sv61.gene.name.circos
+debuggroup summary 7.03s ... see progress with -debug_group text
+debuggroup summary 7.03s ... see placement summary with -debug_group textplace
+debuggroup summary 7.05s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 7.06s drawing track_3 _undef_ z 0 no_file 
+debuggroup summary 7.06s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 7.10s drawing track_4 histogram z 0 CHP212.cluster274.COMPLEX.sv61.cna.circos orient out
+debuggroup summary 7.11s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 7.40s drawing track_5 text z 0 CHP212.cluster274.COMPLEX.sv61.distance.circos 
+debuggroup summary 7.40s placing text track CHP212.cluster274.COMPLEX.sv61.distance.circos
+debuggroup summary 7.40s ... see progress with -debug_group text
+debuggroup summary 7.40s ... see placement summary with -debug_group textplace
+debuggroup summary 7.42s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 7.42s drawing track_6 histogram z 0 CHP212.cluster274.COMPLEX.sv61.cna.circos orient out
+debuggroup summary 7.43s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 7.61s drawing track_7 histogram z 0 CHP212.cluster274.COMPLEX.sv61.map.circos orient out
+debuggroup summary 7.62s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 7.87s drawing track_8 histogram z 0 CHP212.cluster274.COMPLEX.sv61.map.circos orient out
+debuggroup summary 7.88s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 8.07s drawing track_9 connector z 0 CHP212.cluster274.COMPLEX.sv61.connector.circos 
+debuggroup summary 8.07s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 8.97s drawing track_10 scatter z 0 CHP212.cluster274.COMPLEX.sv61.scatter.circos orient out
+debuggroup summary 8.98s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 9.04s drawing track_11 scatter z 0 CHP212.cluster274.COMPLEX.sv61.scatter.sgl.circos orient out
+debuggroup summary 9.04s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 9.06s drawing track_12 highlight z 0 CHP212.cluster274.COMPLEX.sv61.line_element.circos 
+debuggroup summary 9.06s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup summary 9.06s drawing track_13 highlight z 0 CHP212.cluster274.COMPLEX.sv61.fragile.circos 
+debuggroup summary 9.06s found conf file /app/circos-0.69-6/bin/../etc/tracks/axis.conf
+debuggroup output 9.06s generating output
+debuggroup output 9.54s created PNG image /app/mounted/vis_plot/CHP212.cluster274.COMPLEX.sv61.107.png (841 kb)
