@@ -60,7 +60,7 @@ get_ecDNA_chain_coordinates <- function(linx_dir, sample, cluster = NA, chainId 
   if(!is.na(cluster) & !is.na(chainId)){
     assertthat::assert_that(length(cluster)==length(chainId), msg = "length of cluster and chainID must be the same")
     user_specified_cluster_chain_id = paste(cluster, chainId)
-    ecDNA_segments <- ecDNA_segments %>% filter(cluster_chain_id %in% user_specified_cluster_chain_id)
+    ecDNA_segments <- ecDNA_segments %>% dplyr::filter(cluster_chain_id %in% user_specified_cluster_chain_id)
   }
 
   return(ecDNA_segments)
