@@ -4,12 +4,14 @@
 \alias{get_ecDNA_chains}
 \title{identify ecDNA chains}
 \usage{
-get_ecDNA_chains(linx_dir, sample)
+get_ecDNA_chains(linx_dir, sample, verbose = TRUE)
 }
 \arguments{
-\item{linx_dir}{path to a directory containing linx files including samplename.linx.links.tsv}
+\item{linx_dir}{path to a directory containing linx files including samplename.linx.links.tsv (string)}
 
-\item{sample}{name of sample of interest}
+\item{sample}{name of sample of interest (string)}
+
+\item{verbose}{verbose (bool)}
 }
 \value{
 data.frame describing SV clusters and chains that comprise ecDNA molecules in a single sample
