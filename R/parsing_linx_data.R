@@ -43,25 +43,21 @@ get_ecDNA_chains <- function(linx_dir, sample, verbose = TRUE){
 #' linx_dir = system.file(package="utilitybeltlinx", "CHP212")
 #' get_ecDNA_chain_coordinates(linx_dir, "CHP212", cluster=274, chainId = 8)
 get_ecDNA_chain_coordinates <- function(linx_dir, sample, cluster = NA, chainId = NA){
-  vis_segments_df=read_vis_segments(linx_dir, sample, verbose = FALSE)
-  links_df <- read_links(linx_dir, sample, verbose = FALSE)
-
-  ecdna_cluster_chain_ids <- links_df %>%
-    dplyr::filter(ecDna == "true") %>%
-    dplyr::mutate(cluster_chain_id = paste(clusterId, chainId)) %>%
-    dplyr::pull(cluster_chain_id) %>%
-    unique()
+  vis_segments_df=read_vis_segments(linx_dir, sample, verbose = FALSE, fix_centromeres_and_telomeres = FALSE)
 
   ecDNA_segments <- vis_segments_df %>%
     dplyr::filter(SampleId == sample) %>%
-    dplyr::mutate(cluster_chain_id = paste(ClusterId,ChainId)) %>%
-    dplyr::filter(cluster_chain_id %in% ecdna_cluster_chain_ids)
+    dplyr::filter(InDoubleMinute=="true") %>%
+    dplyr::mutate(cluster_chain_id = paste(ClusterId,ChainId))
 
-  if(!is.na(cluster) & !is.na(chainId)){
+  if(all(!is.na(cluster)) & all(!is.na(chainId))){
     assertthat::assert_that(length(cluster)==length(chainId), msg = "length of cluster and chainID must be the same")
+    message("Returning ecDNA segments for:\n", paste0(paste0("Cluster ", cluster, " => ","Chain ",chainId), collapse = "\n"))
     user_specified_cluster_chain_id = paste(cluster, chainId)
     ecDNA_segments <- ecDNA_segments %>% dplyr::filter(cluster_chain_id %in% user_specified_cluster_chain_id)
   }
+  else
+    message("Returning all ecDNA segments. To filter results for a specific chain, please supply BOTH the cluster and chainId of interest")
 
   return(ecDNA_segments)
 }
@@ -296,6 +292,8 @@ read_vis_segments <- function(linx_dir, sample, verbose=TRUE, fix_centromeres_an
 
   if(fix_centromeres_and_telomeres)
     vis_segment_df <- vis_segments_replace_centromere_and_telomere_characters_with_position(vis_segment_df)
+
+  return(vis_segment_df)
 }
 
 read_vis_sv_data <- function(linx_dir, sample, verbose=TRUE){
