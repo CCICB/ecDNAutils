@@ -2,24 +2,24 @@
 % Please edit documentation in R/parsing_linx_data.R
 \name{get_ecDNA_chains}
 \alias{get_ecDNA_chains}
-\title{identify ecDNA chains}
+\title{Identify ecDNA chains}
 \usage{
 get_ecDNA_chains(linx_dir, sample, verbose = TRUE)
 }
 \arguments{
-\item{linx_dir}{path to a directory containing linx files including samplename.linx.links.tsv (string)}
+\item{linx_dir}{Path to a directory containing linx files including samplename.linx.links.tsv (string)}
 
-\item{sample}{name of sample of interest (string)}
+\item{sample}{Name of the sample of interest (string)}
 
-\item{verbose}{verbose (bool)}
+\item{verbose}{Verbose (boolean)}
 }
 \value{
-data.frame describing SV clusters and chains that comprise ecDNA molecules in a single sample
+Data frame describing SV clusters and chains that comprise ecDNA molecules in a single sample
 }
 \description{
 Lists clusters/chain combinations that comprise ecDNA molecules in a single sample
 }
 \examples{
-linx_dir = system.file(package="utilitybeltlinx", "CHP212")
+linx_dir = system.file(package="ecDNAutils", "CHP212")
 get_ecDNA_chains(linx_dir, "CHP212")
 }

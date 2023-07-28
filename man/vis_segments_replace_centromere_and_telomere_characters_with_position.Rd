@@ -9,16 +9,16 @@ vis_segments_replace_centromere_and_telomere_characters_with_position(
 )
 }
 \arguments{
-\item{vis_segments_df}{result of \strong{read_vis_segments} (data.frame)}
+\item{vis_segments_df}{Result of \strong{read_vis_segments} (data.frame)}
 }
 \value{
-data.frame containing updated PosStart and PosEnd columns
+Data.frame containing updated PosStart and PosEnd columns
 }
 \description{
 Replaces vis_segment start/end positions that were 'C' (centromere) or 'T' (telomere) with absolute base positions
 }
 \examples{
-linx_dir = system.file(package="utilitybeltlinx", "CHP212")
+linx_dir = system.file(package="ecDNAutils", "CHP212")
 vis_segments_df <- read_vis_segments(linx_dir, "CHP212")
 vis_segments_replace_centromere_and_telomere_characters_with_position(vis_segments_df)
 }

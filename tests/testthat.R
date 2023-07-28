@@ -1,4 +1,4 @@
 library(testthat)
-library(utilitybeltlinx)
+library(ecDNAutils)
 
-test_check("utilitybeltlinx")
+test_check("ecDNAutils")

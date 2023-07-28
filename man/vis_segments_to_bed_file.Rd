@@ -7,18 +7,13 @@
 vis_segments_to_bed_file(vis_segments_df, outfile, verbose = TRUE)
 }
 \arguments{
-\item{vis_segments_df}{result of \strong{read_vis_segments} (data.frame)}
+\item{vis_segments_df}{Result of \strong{read_vis_segments} (data.frame)}
 
-\item{outfile}{path to output bedfile}
+\item{outfile}{Path to output bedfile}
 }
 \value{
-
+Run for its side effects
 }
 \description{
 Writes a vis_segments dataframe to disk as a bed file
-}
-\examples{
-linx_dir = system.file(package="utilitybeltlinx", "CHP212")
-vis_segments_df <- read_vis_segments(linx_dir, "CHP212")
-vis_segments_to_bed_file(vis_segments_df)
 }

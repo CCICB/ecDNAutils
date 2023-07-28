@@ -1,17 +1,16 @@
-
-#' identify ecDNA chains
+#' Identify ecDNA chains
 #'
 #' Lists clusters/chain combinations that comprise ecDNA molecules in a single sample
 #'
-#' @param linx_dir path to a directory containing linx files including samplename.linx.links.tsv (string)
-#' @param sample name of sample of interest (string)
-#' @param verbose verbose (bool)
+#' @param linx_dir Path to a directory containing linx files including samplename.linx.links.tsv (string)
+#' @param sample Name of the sample of interest (string)
+#' @param verbose Verbose (boolean)
 #'
-#' @return data.frame describing SV clusters and chains that comprise ecDNA molecules in a single sample
+#' @return Data frame describing SV clusters and chains that comprise ecDNA molecules in a single sample
 #' @export
 #'
 #' @examples
-#' linx_dir = system.file(package="utilitybeltlinx", "CHP212")
+#' linx_dir = system.file(package="ecDNAutils", "CHP212")
 #' get_ecDNA_chains(linx_dir, "CHP212")
 get_ecDNA_chains <- function(linx_dir, sample, verbose = TRUE){
 
@@ -24,23 +23,24 @@ get_ecDNA_chains <- function(linx_dir, sample, verbose = TRUE){
     return()
 }
 
-#' get_ecDNA_chain_coordinates
+#' Get ecDNA chain coordinates
 #'
 #' Get coordinates of segments in ecDNA molecules
 #'
-#' @param linx_dir path to a directory containing linx files
-#' @param sample name of sample to examine
-#' @param cluster name of clusters of interest.
+#' @param linx_dir Path to a directory containing linx files
+#' @param sample Name of the sample to examine
+#' @param cluster Name of clusters of interest.
 #' By default will return all clusters/chains in ecDNA molecules.
-#' Can be vector of elements, where element 1 of cluster corresponds to element 1 of chainId, element 2 of cluster corresponds to element 2 of chainId ... etc
-#' @param chainId name of chain ids of interest.
+#' Can be a vector of elements, where element 1 of cluster corresponds to element 1 of chainId, element 2 of cluster corresponds to element 2 of chainId ... etc
+#' @param chainId Name of chain IDs of interest.
 #' By default will return all clusters/chains in ecDNA molecules.
-#' Can be vector of elements, where element 1 of chainId corresponds to element 1 of cluster, element 2 of chainId corresponds to element 2 of cluster ... etc
-#' @return coordinates of a single ecDNA molecule (data.frame)
+#' Can be a vector of elements, where element 1 of chainId corresponds to element 1 of cluster, element 2 of chainId corresponds to element 2 of cluster ... etc
+#'
+#' @return Coordinates of a single ecDNA molecule (data.frame)
 #' @export
 #'
 #' @examples
-#' linx_dir = system.file(package="utilitybeltlinx", "CHP212")
+#' linx_dir = system.file(package="ecDNAutils", "CHP212")
 #' get_ecDNA_chain_coordinates(linx_dir, "CHP212", cluster=274, chainId = 8)
 get_ecDNA_chain_coordinates <- function(linx_dir, sample, cluster = NA, chainId = NA){
   vis_segments_df=read_vis_segments(linx_dir, sample, verbose = FALSE, fix_centromeres_and_telomeres = FALSE)
@@ -67,9 +67,9 @@ get_ecDNA_chain_coordinates <- function(linx_dir, sample, cluster = NA, chainId 
 #' Get coordinates of segments in ecDNA molecules and write to bedfile
 #'
 #' @inheritParams get_ecDNA_chain_coordinates
-#' @param bed_outfile path to output bedfile
+#' @param bed_outfile Path to output bedfile
 #'
-#' @return bedfile describing ecDNA coordinates
+#' @return Bedfile describing ecDNA coordinates
 #' @export
 #'
 get_ecDNA_chain_coordinates_write_bed <- function(linx_dir, sample, cluster, chainId, bed_outfile){
@@ -82,13 +82,13 @@ get_ecDNA_chain_coordinates_write_bed <- function(linx_dir, sample, cluster, cha
 
 #' vis_segments to bed
 #'
-#' @param vis_segments_df result of \strong{read_vis_segments} (data.frame)
+#' @param vis_segments_df Result of \strong{read_vis_segments} (data.frame)
 #'
-#' @return bed-like data.frame
+#' @return Bed-like data.frame
 #' @export
 #'
 #' @examples
-#' linx_dir = system.file(package="utilitybeltlinx", "CHP212")
+#' linx_dir = system.file(package="ecDNAutils", "CHP212")
 #' vis_segments_df <- read_vis_segments(linx_dir, "CHP212")
 #' vis_segments_to_bed_df(vis_segments_df)
 vis_segments_to_bed_df <- function(vis_segments_df){
@@ -105,15 +105,11 @@ vis_segments_to_bed_df <- function(vis_segments_df){
 #'
 #' @inheritParams vis_segments_to_bed_df
 #'
-#' @param outfile path to output bedfile
+#' @param outfile Path to output bedfile
 #'
-#' @return
+#' @return Run for its side effects
 #' @export
 #'
-#' @examples
-#' linx_dir = system.file(package="utilitybeltlinx", "CHP212")
-#' vis_segments_df <- read_vis_segments(linx_dir, "CHP212")
-#' vis_segments_to_bed_file(vis_segments_df)
 vis_segments_to_bed_file <- function(vis_segments_df, outfile, verbose=TRUE){
   assertthat::assert_that(assertthat::is.string(outfile))
 
@@ -134,13 +130,13 @@ vis_segments_to_bed_file <- function(vis_segments_df, outfile, verbose=TRUE){
 #'
 #' Replaces vis_segment start/end positions that were 'C' (centromere) or 'T' (telomere) with absolute base positions
 #'
-#' @param vis_segments_df result of \strong{read_vis_segments} (data.frame)
+#' @param vis_segments_df Result of \strong{read_vis_segments} (data.frame)
 #'
-#' @return data.frame containing updated PosStart and PosEnd columns
+#' @return Data.frame containing updated PosStart and PosEnd columns
 #' @export
 #'
 #' @examples
-#' linx_dir = system.file(package="utilitybeltlinx", "CHP212")
+#' linx_dir = system.file(package="ecDNAutils", "CHP212")
 #' vis_segments_df <- read_vis_segments(linx_dir, "CHP212")
 #' vis_segments_replace_centromere_and_telomere_characters_with_position(vis_segments_df)
 vis_segments_replace_centromere_and_telomere_characters_with_position <- function(vis_segments_df){
@@ -287,6 +283,16 @@ read_linx_file <- function(linx_dir, sample, suffix, verbose=TRUE){
   read.csv(file_to_search_for, header = TRUE, sep = "\t")
 }
 
+#' Read vis segments
+#'
+#' @param linx_dir Path to a directory containing linx files
+#' @param sample Name of the sample
+#' @param verbose Verbose
+#' @param fix_centromeres_and_telomeres Fix centromeres and telomeres
+#'
+#' @return vis segments (data.frame)
+#' @export
+#'
 read_vis_segments <- function(linx_dir, sample, verbose=TRUE, fix_centromeres_and_telomeres=TRUE){
   vis_segment_df <- read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.vis_segments.tsv", verbose = verbose)
 

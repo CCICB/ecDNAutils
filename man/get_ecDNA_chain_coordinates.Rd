@@ -2,30 +2,30 @@
 % Please edit documentation in R/parsing_linx_data.R
 \name{get_ecDNA_chain_coordinates}
 \alias{get_ecDNA_chain_coordinates}
-\title{get_ecDNA_chain_coordinates}
+\title{Get ecDNA chain coordinates}
 \usage{
 get_ecDNA_chain_coordinates(linx_dir, sample, cluster = NA, chainId = NA)
 }
 \arguments{
-\item{linx_dir}{path to a directory containing linx files}
+\item{linx_dir}{Path to a directory containing linx files}
 
-\item{sample}{name of sample to examine}
+\item{sample}{Name of the sample to examine}
 
-\item{cluster}{name of clusters of interest.
+\item{cluster}{Name of clusters of interest.
 By default will return all clusters/chains in ecDNA molecules.
-Can be vector of elements, where element 1 of cluster corresponds to element 1 of chainId, element 2 of cluster corresponds to element 2 of chainId ... etc}
+Can be a vector of elements, where element 1 of cluster corresponds to element 1 of chainId, element 2 of cluster corresponds to element 2 of chainId ... etc}
 
-\item{chainId}{name of chain ids of interest.
+\item{chainId}{Name of chain IDs of interest.
 By default will return all clusters/chains in ecDNA molecules.
-Can be vector of elements, where element 1 of chainId corresponds to element 1 of cluster, element 2 of chainId corresponds to element 2 of cluster ... etc}
+Can be a vector of elements, where element 1 of chainId corresponds to element 1 of cluster, element 2 of chainId corresponds to element 2 of cluster ... etc}
 }
 \value{
-coordinates of a single ecDNA molecule (data.frame)
+Coordinates of a single ecDNA molecule (data.frame)
 }
 \description{
 Get coordinates of segments in ecDNA molecules
 }
 \examples{
-linx_dir = system.file(package="utilitybeltlinx", "CHP212")
+linx_dir = system.file(package="ecDNAutils", "CHP212")
 get_ecDNA_chain_coordinates(linx_dir, "CHP212", cluster=274, chainId = 8)
 }

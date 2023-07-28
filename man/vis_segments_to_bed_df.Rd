@@ -7,16 +7,16 @@
 vis_segments_to_bed_df(vis_segments_df)
 }
 \arguments{
-\item{vis_segments_df}{result of \strong{read_vis_segments} (data.frame)}
+\item{vis_segments_df}{Result of \strong{read_vis_segments} (data.frame)}
 }
 \value{
-bed-like data.frame
+Bed-like data.frame
 }
 \description{
 vis_segments to bed
 }
 \examples{
-linx_dir = system.file(package="utilitybeltlinx", "CHP212")
+linx_dir = system.file(package="ecDNAutils", "CHP212")
 vis_segments_df <- read_vis_segments(linx_dir, "CHP212")
 vis_segments_to_bed_df(vis_segments_df)
 }

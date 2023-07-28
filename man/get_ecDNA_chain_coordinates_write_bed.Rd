@@ -13,22 +13,22 @@ get_ecDNA_chain_coordinates_write_bed(
 )
 }
 \arguments{
-\item{linx_dir}{path to a directory containing linx files}
+\item{linx_dir}{Path to a directory containing linx files}
 
-\item{sample}{name of sample to examine}
+\item{sample}{Name of the sample to examine}
 
-\item{cluster}{name of clusters of interest.
+\item{cluster}{Name of clusters of interest.
 By default will return all clusters/chains in ecDNA molecules.
-Can be vector of elements, where element 1 of cluster corresponds to element 1 of chainId, element 2 of cluster corresponds to element 2 of chainId ... etc}
+Can be a vector of elements, where element 1 of cluster corresponds to element 1 of chainId, element 2 of cluster corresponds to element 2 of chainId ... etc}
 
-\item{chainId}{name of chain ids of interest.
+\item{chainId}{Name of chain IDs of interest.
 By default will return all clusters/chains in ecDNA molecules.
-Can be vector of elements, where element 1 of chainId corresponds to element 1 of cluster, element 2 of chainId corresponds to element 2 of cluster ... etc}
+Can be a vector of elements, where element 1 of chainId corresponds to element 1 of cluster, element 2 of chainId corresponds to element 2 of cluster ... etc}
 
-\item{bed_outfile}{path to output bedfile}
+\item{bed_outfile}{Path to output bedfile}
 }
 \value{
-bedfile describing ecDNA coordinates
+Bedfile describing ecDNA coordinates
 }
 \description{
 Get coordinates of segments in ecDNA molecules and write to bedfile
