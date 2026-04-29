@@ -16,11 +16,12 @@ get_ecDNA_chains <- function(linx_dir, sample, verbose = TRUE){
 
   linx_links_df <- read_links(linx_dir, sample, verbose)
 
-  linx_links_df %>%
-    dplyr::filter(ecDna == "true") %>%
-    dplyr::select(clusterId, chainId) %>%
-    dplyr::distinct() %>%
-    return()
+  ecdna_chains <- linx_links_df |>
+    dplyr::filter(ecDna == "true") |>
+    dplyr::select(clusterId, chainId) |>
+    dplyr::distinct()
+
+  return(ecdna_chains)
 }
 
 #' Get ecDNA chain coordinates
@@ -45,19 +46,19 @@ get_ecDNA_chains <- function(linx_dir, sample, verbose = TRUE){
 get_ecDNA_chain_coordinates <- function(linx_dir, sample, cluster = NA, chainId = NA){
   vis_segments_df=read_vis_segments(linx_dir, sample, verbose = FALSE, fix_centromeres_and_telomeres = FALSE)
 
-  ecDNA_segments <- vis_segments_df %>%
-    dplyr::filter(SampleId == sample) %>%
-    dplyr::filter(InDoubleMinute=="true") %>%
+  ecDNA_segments <- vis_segments_df |>
+    dplyr::filter(SampleId == sample) |>
+    dplyr::filter(InDoubleMinute=="true") |>
     dplyr::mutate(cluster_chain_id = paste(ClusterId,ChainId))
 
   if(all(!is.na(cluster)) & all(!is.na(chainId))){
     assertthat::assert_that(length(cluster)==length(chainId), msg = "length of cluster and chainID must be the same")
     message("Returning ecDNA segments for:\n", paste0(paste0("Cluster ", cluster, " => ","Chain ",chainId), collapse = "\n"))
     user_specified_cluster_chain_id = paste(cluster, chainId)
-    ecDNA_segments <- ecDNA_segments %>% dplyr::filter(cluster_chain_id %in% user_specified_cluster_chain_id)
+    ecDNA_segments <- ecDNA_segments |> dplyr::filter(cluster_chain_id %in% user_specified_cluster_chain_id)
   }
   else
-    message("Returning all ecDNA segments. To filter results for a specific chain, please supply BOTH the cluster and chainId of interest")
+  message("Returning all ecDNA segments. To filter results for a specific chain, please supply BOTH the cluster and chainId of interest")
 
   return(ecDNA_segments)
 }
@@ -94,8 +95,8 @@ get_ecDNA_chain_coordinates_write_bed <- function(linx_dir, sample, cluster, cha
 vis_segments_to_bed_df <- function(vis_segments_df){
   assertthat::assert_that(is.data.frame(vis_segments_df))
 
-  vis_segments_df %>%
-    dplyr::mutate(sample_cluster_chain_id = paste(SampleId, ClusterId, ChainId, sep = "__")) %>%
+  vis_segments_df |>
+    dplyr::mutate(sample_cluster_chain_id = paste(SampleId, ClusterId, ChainId, sep = "__")) |>
     dplyr::select(Chromosome, PosStart, PosEnd, sample_cluster_chain_id)
 }
 
@@ -115,12 +116,12 @@ vis_segments_to_bed_file <- function(vis_segments_df, outfile, verbose=TRUE){
 
   if(verbose) message("Writing bed file to: ", outfile)
 
-  vis_segments_to_bed_df(vis_segments_df = vis_segments_df) %>%
+  vis_segments_to_bed_df(vis_segments_df = vis_segments_df) |>
     write.table(file = outfile,
-                sep = "\t",
-                col.names = FALSE,
-                quote = FALSE,
-                row.names = FALSE
+      sep = "\t",
+      col.names = FALSE,
+      quote = FALSE,
+      row.names = FALSE
     )
 }
 
@@ -227,14 +228,14 @@ vis_segments_replace_centromere_and_telomere_characters_with_position <- functio
       )
     ),
     row.names = c(NA,
-                  -24L),
+      -24L),
     class = c("tbl_df", "tbl", "data.frame")
   )
 
-  segments_in_ecdna_df <- vis_segments_df %>%
+  segments_in_ecdna_df <- vis_segments_df |>
     dplyr::mutate(dplyr::across(c(PosStart, PosEnd), .fns = as.character))
 
-  segments_in_ecdna_coordinates_fixed_df <- segments_in_ecdna_df %>%
+  segments_in_ecdna_coordinates_fixed_df <- segments_in_ecdna_df |>
     dplyr::mutate(
       PosStartOld = PosStart,
       PosStart = sapply(seq_along(PosStart), function(i){
@@ -242,28 +243,28 @@ vis_segments_replace_centromere_and_telomere_characters_with_position <- functio
           return("0")
         }
         else if(PosStart[i] == "C"){
-          chromosomes_hg19_df[chromosomes_hg19_df$chrom==Chromosome[i],"centromere"] %>%
+          chromosomes_hg19_df[chromosomes_hg19_df$chrom==Chromosome[i],"centromere"] |>
             as.character() %>%
             return()
         }
         else
-          return(PosStart[i])
-      }) %>% as.numeric(),
+        return(PosStart[i])
+      }) |> as.numeric(),
       PosEndOld = PosEnd,
       PosEnd = sapply(seq_along(PosEnd), function(i){
         if(PosEnd[i] == "T"){
-          chromosomes_hg19_df[chromosomes_hg19_df$chrom==Chromosome[i],"chromLength"] %>%
+          chromosomes_hg19_df[chromosomes_hg19_df$chrom==Chromosome[i],"chromLength"] |>
             as.character() %>%
             return()
         }
         else if(PosEnd[i] == "C"){
-          chromosomes_hg19_df[chromosomes_hg19_df$chrom==Chromosome[i],"centromere"] %>%
+          chromosomes_hg19_df[chromosomes_hg19_df$chrom==Chromosome[i],"centromere"] |>
             as.character() %>%
             return()
         }
         else
-          return(PosEnd[i])
-      }) %>% as.numeric()
+        return(PosEnd[i])
+      }) |> as.numeric()
     )
 
   return(segments_in_ecdna_coordinates_fixed_df)
@@ -271,7 +272,9 @@ vis_segments_replace_centromere_and_telomere_characters_with_position <- functio
 
 
 # File Reading ------------------------------------------------------------
-read_linx_file <- function(linx_dir, sample, suffix, verbose=TRUE){
+
+# Helper for reading linx files
+read_linx_file <- function(linx_dir, sample, suffix, verbose=TRUE, sep = "\t"){
   assertthat::assert_that(assertthat::is.dir(path = linx_dir))
   assertthat::assert_that(assertthat::is.string(sample))
   file_to_search_for=paste0(linx_dir, "/", sample, suffix)
@@ -280,7 +283,7 @@ read_linx_file <- function(linx_dir, sample, suffix, verbose=TRUE){
   assertthat::assert_that(file.exists(file_to_search_for))
   if(verbose) message("    > File found")
 
-  read.csv(file_to_search_for, header = TRUE, sep = "\t")
+  read.csv(file_to_search_for, header = TRUE, sep = sep)
 }
 
 #' Read vis segments
@@ -297,19 +300,47 @@ read_vis_segments <- function(linx_dir, sample, verbose=TRUE, fix_centromeres_an
   vis_segment_df <- read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.vis_segments.tsv", verbose = verbose)
 
   if(fix_centromeres_and_telomeres)
-    vis_segment_df <- vis_segments_replace_centromere_and_telomere_characters_with_position(vis_segment_df)
+  vis_segment_df <- vis_segments_replace_centromere_and_telomere_characters_with_position(vis_segment_df)
 
   return(vis_segment_df)
 }
 
+#' Read vis sv data
+#'
+#' @param linx_dir Path to a directory containing linx files
+#' @param sample Name of the sample
+#' @param verbose Verbose
+#'
+#' @return vis_sv data (data.frame)
+#' @export
+#'
 read_vis_sv_data <- function(linx_dir, sample, verbose=TRUE){
   read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.vis_sv_data.tsv", verbose = verbose)
 }
 
+
+#' Read Links File
+#'
+#' @param linx_dir Path to a directory containing linx files
+#' @param sample Name of the sample
+#' @param verbose Verbose
+#'
+#' @return links (data.frame)
+#' @export
+#'
 read_links <- function(linx_dir, sample, verbose=TRUE){
   read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.links.tsv", verbose = verbose)
 }
 
+#' Read Linx ecDNA File
+#'
+#' @param linx_dir Path to a directory containing linx files
+#' @param sample Name of the sample
+#' @param verbose Verbose
+#'
+#' @return ecDNA (data.frame)
+#' @export
+#'
 read_ecdna <- function(linx_dir, sample, verbose=TRUE){
-  read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.ecdna.csv", verbose = verbose)
+  read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.ecdna.csv", verbose = verbose, sep = ",")
 }
