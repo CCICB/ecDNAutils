@@ -4,7 +4,7 @@
 \alias{read_ecdna}
 \title{Read Linx ecDNA File}
 \usage{
-read_ecdna(linx_dir, sample, verbose = TRUE)
+read_ecdna(linx_dir, sample, verbose = TRUE, addsample = FALSE)
 }
 \arguments{
 \item{linx_dir}{Path to a directory containing linx files}

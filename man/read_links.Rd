@@ -4,7 +4,7 @@
 \alias{read_links}
 \title{Read Links File}
 \usage{
-read_links(linx_dir, sample, verbose = TRUE)
+read_links(linx_dir, sample, verbose = TRUE, addsample = FALSE)
 }
 \arguments{
 \item{linx_dir}{Path to a directory containing linx files}

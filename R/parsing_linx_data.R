@@ -314,8 +314,10 @@ read_vis_segments <- function(linx_dir, sample, verbose=TRUE, fix_centromeres_an
 #' @return vis_sv data (data.frame)
 #' @export
 #'
-read_vis_sv_data <- function(linx_dir, sample, verbose=TRUE){
-  read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.vis_sv_data.tsv", verbose = verbose)
+read_vis_sv_data <- function(linx_dir, sample, verbose=TRUE, addsample = FALSE){
+  data <- read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.vis_sv_data.tsv", verbose = verbose)
+  if(addsample){ data <- add_sample_col(data, sample) }
+  return(data)
 }
 
 
@@ -328,8 +330,10 @@ read_vis_sv_data <- function(linx_dir, sample, verbose=TRUE){
 #' @return links (data.frame)
 #' @export
 #'
-read_links <- function(linx_dir, sample, verbose=TRUE){
-  read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.links.tsv", verbose = verbose)
+read_links <- function(linx_dir, sample, verbose=TRUE, addsample = FALSE){
+  data = read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.links.tsv", verbose = verbose)
+  if(addsample){ data <- add_sample_col(data, sample) }
+  return(data)
 }
 
 #' Read Linx ecDNA File
@@ -341,6 +345,47 @@ read_links <- function(linx_dir, sample, verbose=TRUE){
 #' @return ecDNA (data.frame)
 #' @export
 #'
-read_ecdna <- function(linx_dir, sample, verbose=TRUE){
-  read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.ecdna.csv", verbose = verbose, sep = ",")
+read_ecdna <- function(linx_dir, sample, verbose=TRUE, addsample = FALSE){
+  ecdna <- read_linx_file(linx_dir = linx_dir, sample = sample, suffix = ".linx.ecdna.csv", verbose = verbose, sep = ",")
+
+  if(addsample){ ecdna <- add_sample_col(ecdna, sample) }
+
+  return(ecdna)
 }
+
+add_sample_col <- function(data, sampleid, samplecolname = "sample"){
+  data[[samplecolname]] <- rep(sampleid, times = nrow(data))
+  cols = intersect(c(samplecolname, colnames(data)), colnames(data))
+
+  data[cols]
+}
+
+# Genes on EcDNA ---------------------------------------------------------------
+
+
+#' Get list of genes on ecDNA
+#'
+#'
+#'
+#' @param data data.frame from [read_ecdna()]
+#'
+#' @returns A long dataframe with 4 Cols
+#' @export
+#'
+#' @examples
+#' linx_dir = system.file(package="ecDNAutils", "CHP212")
+#' data <- read_ecdna(linx_dir, "CHP212")
+#' ecdna_dataframe_to_ampgenes(data)
+ecdna_dataframe_to_ampgenes <- function(data){
+  mindata <- data |>
+    dplyr::filter(IsDM == "true")
+
+  cols = c( "sample", "ClusterId" , "Chains", "AmpGenes")
+  cols = base::intersect(cols, colnames(mindata))
+
+  mindata <- mindata[,cols,drop=FALSE]
+
+  mindata |>
+    tidyr::separate_longer_delim(cols = AmpGenes, delim = ";")
+}
+

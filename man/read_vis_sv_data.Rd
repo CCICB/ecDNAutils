@@ -4,7 +4,7 @@
 \alias{read_vis_sv_data}
 \title{Read vis sv data}
 \usage{
-read_vis_sv_data(linx_dir, sample, verbose = TRUE)
+read_vis_sv_data(linx_dir, sample, verbose = TRUE, addsample = FALSE)
 }
 \arguments{
 \item{linx_dir}{Path to a directory containing linx files}
