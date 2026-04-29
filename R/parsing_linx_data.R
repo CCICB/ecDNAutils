@@ -340,6 +340,7 @@ read_links <- function(linx_dir, sample, verbose=TRUE, addsample = FALSE){
 #'
 #' @param linx_dir Path to a directory containing linx files
 #' @param sample Name of the sample
+#' @param addsample Which sample to add
 #' @param verbose Verbose
 #'
 #' @return ecDNA (data.frame)
@@ -374,7 +375,7 @@ add_sample_col <- function(data, sampleid, samplecolname = "sample"){
 #'
 #' @examples
 #' linx_dir = system.file(package="ecDNAutils", "CHP212")
-#' data <- read_ecdna(linx_dir, "CHP212")
+#' data <- read_ecdna(linx_dir, "CHP212", addsample=TRUE)
 #' ecdna_dataframe_to_ampgenes(data)
 ecdna_dataframe_to_ampgenes <- function(data){
   mindata <- data |>

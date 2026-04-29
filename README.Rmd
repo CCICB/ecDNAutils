@@ -1,0 +1,48 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ecDNAutils
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of ecDNAutils is to ...
+
+## Installation
+
+You can install the development version of ecDNAutils from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("CCICB/ecDNAutils")
+```
+
+## Quick Start
+
+
+```{r example}
+library(ecDNAutils)
+
+# Specify directory containing linx files
+linx_dir <- system.file(package="ecDNAutils", "CHP212")
+
+# Parse Key linx files
+links <- read_links(linx_dir, sample = "CHP212")
+ecdna <- read_ecdna(linx_dir, sample = "CHP212")
+
+# Process to derive key-insights, like what genes are amplified on each ecDNA
+ampgenes <- ecdna_dataframe_to_ampgenes(ecdna)
+```
+
