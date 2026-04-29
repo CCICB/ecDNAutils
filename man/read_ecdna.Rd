@@ -12,6 +12,8 @@ read_ecdna(linx_dir, sample, verbose = TRUE, addsample = FALSE)
 \item{sample}{Name of the sample}
 
 \item{verbose}{Verbose}
+
+\item{addsample}{Which sample to add}
 }
 \value{
 ecDNA (data.frame)

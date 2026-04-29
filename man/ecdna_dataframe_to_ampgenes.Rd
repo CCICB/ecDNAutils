@@ -17,6 +17,6 @@ Get list of genes on ecDNA
 }
 \examples{
 linx_dir = system.file(package="ecDNAutils", "CHP212")
-data <- read_ecdna(linx_dir, "CHP212")
+data <- read_ecdna(linx_dir, "CHP212", addsample=TRUE)
 ecdna_dataframe_to_ampgenes(data)
 }
